@@ -7,22 +7,22 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="src/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="src/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="src/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="src/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="src/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,7 +34,7 @@
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
+      <div class="container" style="width: 80%;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -42,211 +42,154 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand">Po-Nien Kung</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+            <li><a href="#experience" aria-controls="profile" role="tab" data-toggle="tab">Experience</a></li>
+            <li><a href="#publication" aria-controls="profile" role="tab" data-toggle="tab">Publications</a></li>
+            <li><a href="#life" aria-controls="profile" role="tab" data-toggle="tab">Life</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
+        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+    <div class="container-fluid" style="padding: 0px; overflow: hidden;">
 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+      <div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="home">
+            <!-- <div class="filter-color"></div> -->
+            <div class="row" id="personal-info-row">
+              <!-- <div class="filter-img"></div> -->
+              <div class="col-xs-12 col-md-5" id="personal-photo-div">
+                <div id="personal-photo-bg"></div>
+                <div id="personal-photo-bg" class="img"></div>
+                <img src="img/ponien.jpeg" class="personal-photo">
+              </div>
+              <div class="col-xs-12 col-md-7" id="personal-info">
+                <h1 style="font-weight:bold;"> Po-Nien Kung &nbsp<span style="font-size: 16px;">(龔柏年)</span></h2>
+                <h3>Undergrad Student<br>National Taiwan University</h3>
+                <h4 style="color: #2a554c;">b06902012@ntu.edu.tw</h4>
+                <br>
+                <div style="position: relative; width: 100%;">
+                  <a href="" class="link-icon" ><i class="fab fa-github"></i>&nbsp Github</a>
+                  <a href="" class="link-icon"><i class="fab fa-linkedin"></i>&nbsp LinkedIn</a>
+                  <br>
+                  <a href="" class="link-icon"><i class="fab fa-twitter"></i>&nbsp Twitter</a>
+                  <a href="" class="link-icon"><i class="fas fa-file-download"></i>&nbsp CV</a>
+                  <br>
+                  <a href="" class="link-icon" style="width: 100%;"><i class="fa fa-graduation-cap"></i>&nbspGoogle Scholar</a>
+                </div>
+                
+                <!-- <div> Github, Linked In, Google Scholar, twitter, CV</div> -->
+                <!-- <h3>National Taiwan University</h3> -->
+                
+              </div>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+            <div class="row">
+              <div class="col-xs-10 col-md-12 h-line" style="width: 60%; height: 2px;"></div>
+              <div class="col-xs-6 col-md-12 h-line" style="width: 20%;" id="right-h-line"></div>
+              <div class="col-xs-12 col-md-8" id="about-me">
+                <h2> About Me </h2>
+                <p class="text-content">HELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLO</p>
+                
+              </div>
+              <div class="col-xs-12 col-md-4" id="recent-news">
+                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;">Recent News</h2>
+                <div class="list-group" >
+                  <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading"> <i class="fas fa-bullhorn" style="color: red;"></i>List group item heading</h4>
+                    <p class="list-group-item-text">...</p>
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading"> <i class="fas fa-scroll" style="color: skyblue;" ></i>List group item heading</h4>
+                    <p class="list-group-item-text">...</p>
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading"> <i class="fas fa-code" style="color: rgb(211, 211, 17);" ></i>List group item heading</h4>
+                    <p class="list-group-item-text">...</p>
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading"> <i class="fas fa-star" style="color: rgb(25, 187, 52);" ></i>List group item heading</h4>
+                    <p class="list-group-item-text">...</p>
+                  </a>
+
+                </div>
+              </div>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+            <!-- <div class="full-width-pane">
+              <img src="img/ponien.jpeg" class="personal-photo">
+              <div class="" id="personal-info">
+
+              </div>
+            </div> -->
+          </div>
+          <div role="tabpanel" class="tab-pane full-tab-pane fade in active" id="publication">
+            <!-- <div class="filter-color"></div> -->
+            <div class="row">
+              <div class="col-xs-18 col-md-12" id="publication-list">
+                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;">Publications</h2>
+                <div class="list-group" >
+                  <div class="page-header example-publication-year" style="display: none;">
+                    <h1><small>Year 2020</small></h1>
+                  </div>
+                  <div class="list-group-item example-publication-item" style="display: none;">
+                    <h4 class="list-group-item-heading publication">Paper Title</h4>
+                    <p class="list-group-item-text publication">Author List</p>
+                    <p class="list-group-item-text publication">
+                      Conference and links 
+                      <span class="paper-link">
+                        [
+                        <a href="">Paper</a> 
+                        ]
+                      </span>
+                      <span class="code-link">
+                        [
+                        <a href="">Code</a> 
+                        ]
+                      </span>
+                      <span class="bibtex-link">
+                        [
+                        <a href="">BibTeX</a> 
+                        ]
+                      </span>
+                      <span class="slide-link">
+                        [
+                        <a href="">Slide</a> 
+                        ]
+                      </span>
+                      <span class="talk-link">
+                        [
+                        <a href="">Talk</a> 
+                        ]
+                      </span>
+                    </p>
+                  </div>
+                  
+
+                </div>
+              </div>
             </div>
           </div>
-
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
+      
       </div>
-    </div>
+
+    </div><!-- /.container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>window.jQuery || document.write('<script src="src/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="src/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="src/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://kit.fontawesome.com/f0a77a799b.js" crossorigin="anonymous"></script>
   </body>
 </html>
