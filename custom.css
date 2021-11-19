@@ -1,3 +1,13 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 body {
     height: 100%;
     width: 100%;
@@ -82,7 +92,7 @@ body {
     padding-left: 10%;
     /* background-color: rebeccapurple; */
     /* width: calc(70% - 30vh); */
-    height: 30vh;
+    /* height: 30vh; */
     display: inline-block;
     text-align: left;
 }
@@ -101,6 +111,20 @@ body {
     padding: 2vh;
     background-color: rgba(0, 0, 0, 0.02);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+@media (max-width:1000px), print{
+    #personal-info{
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+    #about-me{
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+    #recent-news {
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
 }
 .list-group-item{
     border-width: 0px;
@@ -157,6 +181,26 @@ i {
 .link-icon > i{
     margin: 0px;
 }
+@media (max-width:800px), print{
+    h1{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 18px;
+    }
+    h3{
+        font-size: 16px;
+    }
+    h4{
+        font-size: 14px;
+    }
+    .link-icon {
+        font-size: 14px;
+    }
+    .text-content{
+        font-size: 12px;
+    }
+}
 /* Publication */
 #publication-list {
     height: auto;
@@ -185,16 +229,16 @@ i {
 }
 @media (max-width:700px), print{
     .list-group-item-heading.publication {
-        font-size: 4.5vw;
+        font-size: 3vw;
     }
     .list-group-item-heading.publication.small {
-        font-size: 4vw;
+        font-size: 2.8vw;
     }
     .list-group-item-text.publication {
-        font-size: 3.5vw;
+        font-size: 2.5vw;
     }
     .list-group-item-text.small {
-        font-size: 3vw;
+        font-size: 2.3vw;
     }
 }
 
