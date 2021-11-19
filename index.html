@@ -61,7 +61,7 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="home">
+          <div role="tabpanel" class="tab-pane full-tab-pane fade in active" id="home">
             <!-- <div class="filter-color"></div> -->
             <div class="row" id="personal-info-row">
               <!-- <div class="filter-img"></div> -->
@@ -72,17 +72,17 @@
               </div>
               <div class="col-xs-12 col-md-7" id="personal-info">
                 <h1 style="font-weight:bold;"> Po-Nien Kung &nbsp<span style="font-size: 16px;">(龔柏年)</span></h2>
-                <h3>Undergrad Student<br>National Taiwan University</h3>
-                <h4 style="color: #2a554c;">b06902012@ntu.edu.tw</h4>
+                <h3>Undergrad Student <small>(Graduated)</small><br>National Taiwan University</h3>
+                <h4 style="color: #2a554c;"> >> &nbsp b06902012@ntu.edu.tw</h4>
                 <br>
                 <div style="position: relative; width: 100%;">
-                  <a href="" class="link-icon" ><i class="fab fa-github"></i>&nbsp Github</a>
-                  <a href="" class="link-icon"><i class="fab fa-linkedin"></i>&nbsp LinkedIn</a>
+                  <a href="https://github.com/billkunghappy" class="link-icon" ><i class="fab fa-github"></i>&nbsp Github</a>
+                  <a href="https://www.linkedin.com/in/po-nien-kung-0486481b0" class="link-icon"><i class="fab fa-linkedin"></i>&nbsp LinkedIn</a>
                   <br>
-                  <a href="" class="link-icon"><i class="fab fa-twitter"></i>&nbsp Twitter</a>
-                  <a href="" class="link-icon"><i class="fas fa-file-download"></i>&nbsp CV</a>
+                  <a href="https://twitter.com/P_N_Kung" class="link-icon"><i class="fab fa-twitter"></i>&nbsp Twitter</a>
+                  <a href="content/bill_resume.pdf" class="link-icon"><i class="fas fa-file-download"></i>&nbsp CV</a>
                   <br>
-                  <a href="" class="link-icon" style="width: 100%;"><i class="fa fa-graduation-cap"></i>&nbspGoogle Scholar</a>
+                  <a href="https://scholar.google.com.tw/citations?user=wAjBsHAAAAAJ&hl=zh-TW" class="link-icon" style="width: 100%;"><i class="fa fa-graduation-cap"></i>&nbspGoogle Scholar</a>
                 </div>
                 
                 <!-- <div> Github, Linked In, Google Scholar, twitter, CV</div> -->
@@ -95,27 +95,39 @@
               <div class="col-xs-6 col-md-12 h-line" style="width: 20%;" id="right-h-line"></div>
               <div class="col-xs-12 col-md-8" id="about-me">
                 <h2> About Me </h2>
-                <p class="text-content">HELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLOHELLO</p>
+                <p class="text-content">Haven't think of how to introduce myself yet...</p>
                 
               </div>
               <div class="col-xs-12 col-md-4" id="recent-news">
-                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;">Recent News</h2>
-                <div class="list-group" >
-                  <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading"> <i class="fas fa-bullhorn" style="color: red;"></i>List group item heading</h4>
-                    <p class="list-group-item-text">...</p>
+                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;" id="">Recent News</h2>
+                <div class="list-group" id="recent-news-list">
+                  <a href="#" class="list-group-item example-recent-news-bullhorn" style="display: none;">
+                    <h4 class="list-group-item-heading"> 
+                      <i class="fas fa-bullhorn" style="color: red;"></i>
+                      <span class="recent-news-title"> List group item heading </span>
+                    </h4>
+                    <p class="list-group-item-text recent-news-date">...</p>
                   </a>
-                  <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading"> <i class="fas fa-scroll" style="color: skyblue;" ></i>List group item heading</h4>
-                    <p class="list-group-item-text">...</p>
+                  <a href="#" class="list-group-item example-recent-news-paper" style="display: none;">
+                    <h4 class="list-group-item-heading"> 
+                      <i class="fas fa-scroll" style="color: skyblue;" ></i>
+                      <span class="recent-news-title"> List group item heading </span>
+                    </h4>
+                    <p class="list-group-item-text recent-news-date">...</p>
                   </a>
-                  <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading"> <i class="fas fa-code" style="color: rgb(211, 211, 17);" ></i>List group item heading</h4>
-                    <p class="list-group-item-text">...</p>
+                  <a href="#" class="list-group-item example-recent-news-code" style="display: none;">
+                    <h4 class="list-group-item-heading"> 
+                      <i class="fas fa-code" style="color: rgb(211, 211, 17);" ></i>
+                      <span class="recent-news-title"> List group item heading </span>
+                    </h4>
+                    <p class="list-group-item-text recent-news-date">...</p>
                   </a>
-                  <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading"> <i class="fas fa-star" style="color: rgb(25, 187, 52);" ></i>List group item heading</h4>
-                    <p class="list-group-item-text">...</p>
+                  <a href="#" class="list-group-item example-recent-news-star" style="display: none;">
+                    <h4 class="list-group-item-heading">
+                      <i class="fas fa-star" style="color: rgb(25, 187, 52);" ></i>
+                      <span class="recent-news-title"> List group item heading </span>
+                    </h4>
+                    <p class="list-group-item-text recent-news-date">...</p>
                   </a>
 
                 </div>
@@ -128,41 +140,122 @@
               </div>
             </div> -->
           </div>
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in active" id="publication">
+          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="experience">
             <!-- <div class="filter-color"></div> -->
             <div class="row">
-              <div class="col-xs-18 col-md-12" id="publication-list">
-                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;">Publications</h2>
-                <div class="list-group" >
+              <div class="col-xs-18 col-md-12">
+                <h1 style="text-align: center; width: 100%; margin-top: 80px; margin-bottom: 1vh;">Experience</h2>
+                <div class="list-group">
+                  <div class="page-header">
+                    <h1 style="text-align: center;"><small>Education</small></h1>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">National Taiwan University</h4>
+                    <p class="list-group-item-text publication medium">- &nbsp Bachelor's Degree</p>
+                    <p class="list-group-item-text publication small">2017 September - 2021 July</p>
+                  </div>
+                  <div class="page-header">
+                    <h1 style="text-align: center;"><small>Research Experience</small></h1>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">MediaTek Research UK</h4>
+                    <p class="list-group-item-text publication medium">- &nbsp Deep Learning Researcher</p>
+                    <p class="list-group-item-text publication small">Taipei(Remote)</p>
+                    <p class="list-group-item-text publication small">2021 October - 2022 January</p>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">National Taiwan University</h4>
+                    <p class="list-group-item-text publication medium">- &nbsp Research Assistant</p>
+                    <p class="list-group-item-text publication small">Taipei</p>
+                    <p class="list-group-item-text publication small">2021 July - 2021 December</p>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">Microsoft</h4>
+                    <p class="list-group-item-text publication medium">- &nbsp Research Intern</p>
+                    <p class="list-group-item-text publication small">Taipei</p>
+                    <p class="list-group-item-text publication small">2021 March - 2021 July</p>
+                  </div>
+                  <div class="page-header">
+                    <h1 style="text-align: center;"><small>Other Experience</small></h1>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">Gridwell</h4>
+                    <p class="list-group-item-text publication medium">- &nbsp Part-Time Software Developer</p>
+                    <p class="list-group-item-text publication small">Taipei</p>
+                    <p class="list-group-item-text publication small">2018 July - 2020 January</p>
+                  </div>
+                  <div class="list-group-item publication">
+                    <h4 class="list-group-item-heading publication small">Freelance Web Developer</h4>
+                    <p class="list-group-item-text publication medium">
+                      - &nbsp Poseidon Network website
+                      <span>
+                        [
+                        <a href="https://billkunghappy.github.io/Poseidon_demo/">Link</a> 
+                        ]
+                      </span>
+                    </p>
+                    <p class="list-group-item-text publication medium">
+                      - &nbsp Binance 2020 Blockchain Week In Vietnam website
+                    </p>
+                    <p class="list-group-item-text publication medium">
+                      - &nbsp Binance 2020 Blockchain Virtual Conference website
+                      <span>
+                        [
+                        <a href="https://www.binance.com/en/anniversary-3">Link</a> 
+                        ]
+                      </span>
+                    </p>
+                    <p class="list-group-item-text publication medium">
+                      - &nbsp Taipei National University of the Arts freshman admission website
+                      <span>
+                        [
+                        <a href="https://billkunghappy.github.io/Bei-Yi-Da/index.html">Link</a> 
+                        ]
+                      </span>
+                    </p>
+                    <p class="list-group-item-text publication small">2019 October - 2020 July</p>
+                  </div>
+                  
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="publication">
+            <!-- <div class="filter-color"></div> -->
+            <div class="row">
+              <div class="col-xs-18 col-md-12">
+                <h1 style="text-align: center; width: 100%; margin-top: 80px; margin-bottom: 1vh;">Publications</h2>
+                <div class="list-group" id="publication-list">
                   <div class="page-header example-publication-year" style="display: none;">
                     <h1><small>Year 2020</small></h1>
                   </div>
-                  <div class="list-group-item example-publication-item" style="display: none;">
-                    <h4 class="list-group-item-heading publication">Paper Title</h4>
-                    <p class="list-group-item-text publication">Author List</p>
-                    <p class="list-group-item-text publication">
-                      Conference and links 
-                      <span class="paper-link">
+                  <div class="list-group-item publication example-publication-item" style="display: none;">
+                    <h4 class="list-group-item-heading publication paper_title">Paper Title</h4>
+                    <p class="list-group-item-text publication author_list">Author List</p>
+                    <p class="list-group-item-text publication conference">
+                      <span class="paper-conference">Conference and links </span>
+                      <span class="paper-link" style="display: none;">
                         [
                         <a href="">Paper</a> 
                         ]
                       </span>
-                      <span class="code-link">
+                      <span class="code-link" style="display: none;">
                         [
                         <a href="">Code</a> 
                         ]
                       </span>
-                      <span class="bibtex-link">
+                      <span class="bibtex-link" style="display: none;">
                         [
                         <a href="">BibTeX</a> 
                         ]
                       </span>
-                      <span class="slide-link">
+                      <span class="slides-link" style="display: none;">
                         [
                         <a href="">Slide</a> 
                         ]
                       </span>
-                      <span class="talk-link">
+                      <span class="talk-link" style="display: none;">
                         [
                         <a href="">Talk</a> 
                         ]
@@ -191,5 +284,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="src/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://kit.fontawesome.com/f0a77a799b.js" crossorigin="anonymous"></script>
+    <script src="render_content_js/render_publication.js"></script>
+    <script src="render_content_js/render_recent_news.js"></script>
   </body>
 </html>

@@ -12,7 +12,7 @@ body {
 }
 @media (max-width:1234px), print{
     .container-fluid{
-        width: 90%;
+        width: 100%;
     }
 }
 .starter-template {
@@ -52,7 +52,7 @@ body {
 .personal-photo{
     height: 30vh;
     width: 30vh;
-    margin-left: 10%;
+    margin-left: -40%;
     object-fit: cover; /* Do not scale the image */
     object-position: center;
     display: inline-block;
@@ -130,7 +130,7 @@ body {
     border-color: 	#2f3752;
 }
 i {
-    margin-right: 5%;
+    margin-right: 3%;
 }
 .h-line{
     margin-bottom: 20px;
@@ -169,6 +169,41 @@ i {
     font-size: 1.5vw;
     font-weight: bold;
 }
+.list-group-item-heading.publication.small {
+    font-size: 1.2vw;
+}
 .list-group-item-text.publication {
     font-size: 1vw;
+    margin-top: 1.2vh;
+}
+.list-group-item-text.small {
+    font-size: 0.8vw;
+    margin-top: 1vh;
+}
+.list-group-item-text.medium {
+    color: #52ab98;
+}
+@media (max-width:700px), print{
+    .list-group-item-heading.publication {
+        font-size: 4.5vw;
+    }
+    .list-group-item-heading.publication.small {
+        font-size: 4vw;
+    }
+    .list-group-item-text.publication {
+        font-size: 3.5vw;
+    }
+    .list-group-item-text.small {
+        font-size: 3vw;
+    }
+}
+
+.list-group-item.publication {
+    margin-top: 2.5vh;
+}
+.recent-news-date{
+    text-align: right;
+}
+.recent-news-title{
+    line-height: 1.8vw;
 }
