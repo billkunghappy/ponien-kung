@@ -42,8 +42,8 @@ body {
 .row{
     margin: auto;
     width: 98%;
-    padding-top: 2vh;
-    margin-bottom: 2vh;
+    padding-top: 1vh;
+    margin-bottom: 1.2vh;
 }
 #personal-info-row{
     padding: 2vh;
@@ -137,7 +137,7 @@ body {
 .text-content{
     width: 100%;
     overflow-wrap: break-word;
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
 }
 .filter-img {
