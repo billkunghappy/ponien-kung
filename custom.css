@@ -42,7 +42,7 @@ body {
 .row{
     margin: auto;
     width: 98%;
-    padding-top: 3vh;
+    padding-top: 2vh;
     margin-bottom: 2vh;
 }
 #personal-info-row{
@@ -101,7 +101,7 @@ body {
     text-align: left;
 }
 #about-me{
-    padding-top: 10px;
+    padding-top: 0px;
     padding-bottom: 3vh;
     padding-left: 0vw;
     padding-right: 6vw;
@@ -137,7 +137,7 @@ body {
 .text-content{
     width: 100%;
     overflow-wrap: break-word;
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
 }
 .filter-img {
