@@ -59,6 +59,10 @@ body {
     text-align: center;
     padding: 2vh;
 }
+.photo{
+    object-fit: cover; /* Do not scale the image */
+    object-position: center;
+}
 .personal-photo{
     height: 30vh;
     width: 30vh;
@@ -97,7 +101,7 @@ body {
     text-align: left;
 }
 #about-me{
-    padding-top: 3vh;
+    padding-top: 10px;
     padding-bottom: 3vh;
     padding-left: 0vw;
     padding-right: 6vw;
@@ -133,7 +137,7 @@ body {
 .text-content{
     width: 100%;
     overflow-wrap: break-word;
-    font-size: 20px;
+    font-size: 16px;
     text-align: left;
 }
 .filter-img {
