@@ -19,9 +19,12 @@ function render_publication(publication) {
     paper_item.children(".author_list").html(publication.author_list.replace(MY_NAME, "<b style=\"color:#52ab98\">"+ MY_NAME+ "</b>"));
     paper_item.children(".conference").children(".paper-conference").text(publication.conference);
     console.log(publication.accept_rate);
-    if (publication.accept_rate!="")
+    console.log(publication.accept_rate!="");
+    if (publication.accept_rate!=""){
         paper_item.children(".conference").children(".paper-accept-rate").text("("+publication.accept_rate+")");
+        console.log("Show");
         paper_item.children(".conference").children(".paper-accept-rate").show();
+    }
     // all links
     $.each(publication.links,function(index,value){ 
         if (value!="") { // not empty
