@@ -17,6 +17,7 @@
         "paper_title" : "Efficient Multi-Task Auxiliary Learning: Selecting Auxiliary Data by Feature Similarity",
         "author_list" : "Po-Nien Kung, Sheng-Siang Yin, Yi-Cheng Chen, Tse-Hsuan Yang, Yun-Nung Chen",
         "conference" : "EMNLP 2021",
+        "accept_rate" : "oral paper acceptance rate: 8.8%",
         "links" : {
             "paper" : "https://aclanthology.org/2021.emnlp-main.34/",
             "code" : "https://github.com/MiuLab/FastMTL",
@@ -30,6 +31,7 @@
         "paper_title" : "Multi-task learning for situated multi-domain end-to-end dialogue systems",
         "author_list" : "Po-Nien Kung, Chung-Cheng Chang, Tse-Hsuan Yang, Hsin-Kai Hsu, Yu-Jia Liou, Yun-Nung Chen",
         "conference" : "AAAI 2021 DSTC9 Workshop",
+        "accept_rate" : "",
         "links" : {
             "paper" : "https://arxiv.org/abs/2110.05221",
             "code" : "",
@@ -43,6 +45,7 @@
         "paper_title" : "Zero-Shot Rationalization by Multi-Task Transfer Learning from Question Answering",
         "author_list" : "Po-Nien Kung, Tse-Hsuan Yang, Yi-Cheng Chen, Sheng-Siang Yin, Yun-Nung Chen",
         "conference" : "EMNLP 2020 Findings",
+        "accept_rate" : "acceptance rate: further 15.5%",
         "links" : {
             "paper" : "https://aclanthology.org/2020.findings-emnlp.198/",
             "code" : "https://github.com/MiuLab/ZeroShotRationale",
