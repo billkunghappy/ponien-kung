@@ -7,15 +7,21 @@
     },
     {
         "icon":"bullhorn",
-        "title":"I'll be attending ACL 2023 to share my short paper! [Link]",
-        "date":"2021/06/28",
-        "link":"https://arxiv.org/abs/2305.11383"
+        "title":"Seeking a 2024 Summer Intern now. Welcome to reach out!",
+        "date":"2023/12/12",
+        "link":""
     },
     {
-        "icon":"bullhorn",
-        "title":"I'll be fulfilling the four-month mandatory military services starting from 02/09 (I will only be able to reply to emails on weekends).",
-        "date":"2021/02/03",
-        "link":""
+        "icon":"star",
+        "title":"I'll be attending EMNLP 2023 to present my Active Instruction Tuning paper! [Link]",
+        "date":"2023/12/01",
+        "link":"https://arxiv.org/abs/2311.00288"
+    },
+    {
+        "icon":"star",
+        "title":"I'll be attending ACL 2023 to present my short paper! [Link]",
+        "date":"2021/06/28",
+        "link":"https://arxiv.org/abs/2305.11383"
     },
     {
         "icon":"bullhorn",

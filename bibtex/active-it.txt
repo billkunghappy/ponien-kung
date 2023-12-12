@@ -1,0 +1,8 @@
+@misc{kung2023active,
+      title={Active Instruction Tuning: Improving Cross-Task Generalization by Training on Prompt Sensitive Tasks}, 
+      author={Po-Nien Kung and Fan Yin and Di Wu and Kai-Wei Chang and Nanyun Peng},
+      year={2023},
+      eprint={2311.00288},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}

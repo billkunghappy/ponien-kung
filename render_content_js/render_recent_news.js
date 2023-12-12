@@ -15,8 +15,10 @@ function render_news(news) {
     }
 }
 $(document).ready(function(){
+    var MaxNews=3;
     $.getJSON("content/recent-news.json", function(data){
-        for (let index = 1; index < data.length; index++) {
+        console.log(Math.min(data.length, 5));
+        for (let index = 1; index < Math.min(data.length, MaxNews+1); index++) {
             render_news(data[index]);
         }
         // console.log(data[0]); // Prints: 14
