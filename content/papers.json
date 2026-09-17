@@ -1,0 +1,172 @@
+[
+  {
+    "id": "pub-traj",
+    "selected": true,
+    "year": 2026,
+    "title": "Learning Structured Reasoning via Tractable Trajectory Control",
+    "authors": "<b>P.-N. Kung</b>, Z. Yang, J. Luo, C.-F. Yang, H. Deng, Z.-Y. Dou, Y. Yang, N. Peng, et al.",
+    "venue": "ICML 2026",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2603.01641"
+    },
+    "note": "Spotlight"
+  },
+  {
+    "id": "pub-leap",
+    "selected": true,
+    "year": 2026,
+    "title": "LEAP: Supercharging LLMs for Formal Mathematics with Agentic Frameworks",
+    "authors": "<b>P.-N. Kung</b>, L. Song, D. Hwang, J. Yoon, C.-L. Li, S. Severini, M. Olšák, et al.",
+    "venue": "arXiv:2606.03303",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2606.03303"
+    }
+  },
+  {
+    "id": "pub-decouple",
+    "year": 2026,
+    "title": "Decoupling Task-Solving and Output Formatting in LLM Generation",
+    "authors": "H. Deng, <b>P.-N. Kung</b>, N. Peng",
+    "venue": "ACL 2026"
+  },
+  {
+    "id": "pub-planned",
+    "year": 2026,
+    "title": "Planned Test-Time Scaling with Coordinated Reasoning Paths",
+    "authors": "X. Wu, L. Bai, H. Bansal, <b>P.-N. Kung</b>, S. Li, H. Liu, N. Peng, K.-W. Chang",
+    "venue": "COLM 2026 Workshop on Efficient Reasoning"
+  },
+  {
+    "id": "pub-reval",
+    "year": 2025,
+    "title": "LLM-REVal: Can We Trust LLM Reviewers Yet?",
+    "authors": "R. Li, J.-C. Gu, <b>P.-N. Kung</b>, H. Xia, X. Kong, Z. Sui, N. Peng",
+    "venue": "arXiv:2510.12367",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2510.12367"
+    }
+  },
+  {
+    "id": "pub-ctrlg",
+    "selected": true,
+    "year": 2024,
+    "title": "Adaptable Logical Control for Large Language Models (Ctrl-G)",
+    "authors": "H. Zhang*, <b>P.-N. Kung*</b>, M. Yoshida, G. Van den Broeck, N. Peng",
+    "venue": "NeurIPS 2024",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2406.13892"
+    }
+  },
+  {
+    "id": "pub-eventdef",
+    "selected": true,
+    "year": 2024,
+    "title": "Improving Event Definition Following for Zero-Shot Event Detection",
+    "authors": "Z. Cai*, <b>P.-N. Kung*</b>, A. Suvarna, M. D. Ma, H. Bansal, B. Chang, et al.",
+    "venue": "ACL 2024",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2403.02586"
+    }
+  },
+  {
+    "id": "pub-genearl",
+    "year": 2024,
+    "title": "GenEARL: A Training-Free Generative Framework for Multimodal Event Argument Role Labeling",
+    "authors": "H. Bansal, <b>P.-N. Kung</b>, P. J. Brantingham, K.-W. Chang, N. Peng",
+    "venue": "arXiv:2404.04763",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2404.04763"
+    }
+  },
+  {
+    "id": "pub-star",
+    "year": 2024,
+    "title": "STAR: Boosting Low-Resource Information Extraction by Structure-to-Text Data Generation with Large Language Models",
+    "authors": "M. D. Ma, X. Wang, <b>P.-N. Kung</b>, P. J. Brantingham, N. Peng, W. Wang",
+    "venue": "AAAI 2024",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2305.15090"
+    }
+  },
+  {
+    "id": "pub-middag",
+    "year": 2024,
+    "title": "MIDDAG: Where Does Our News Go? Investigating Information Diffusion via Community-Level Information Pathways",
+    "authors": "M. D. Ma, A. K. Taylor, N. Wen, Y. Liu, <b>P.-N. Kung</b>, W. Qin, et al.",
+    "venue": "AAAI 2024 (Demo)"
+  },
+  {
+    "id": "pub-ait",
+    "selected": true,
+    "year": 2023,
+    "title": "Active Instruction Tuning: Improving Cross-Task Generalization by Training on Prompt Sensitive Tasks",
+    "authors": "<b>P.-N. Kung</b>, F. Yin, D. Wu, K.-W. Chang, N. Peng",
+    "venue": "EMNLP 2023",
+    "links": {
+      "Paper": "https://aclanthology.org/2023.emnlp-main.101/"
+    }
+  },
+  {
+    "id": "pub-instr",
+    "selected": true,
+    "year": 2023,
+    "title": "Do Models Really Learn to Follow Instructions? An Empirical Study of Instruction Tuning",
+    "authors": "<b>P.-N. Kung</b>, N. Peng",
+    "venue": "ACL 2023",
+    "links": {
+      "Paper": "https://aclanthology.org/2023.acl-short.113/"
+    }
+  },
+  {
+    "id": "pub-sigir",
+    "year": 2023,
+    "title": "Where Does Your News Come From? Predicting Information Pathways in Social Media",
+    "authors": "A. K. Taylor, N. Wen, <b>P.-N. Kung</b>, J. Chen, V. Peng, W. Wang",
+    "venue": "SIGIR 2023"
+  },
+  {
+    "id": "pub-fever",
+    "year": 2023,
+    "title": "Hierarchical Representations in Dense Passage Retrieval for Question-Answering",
+    "authors": "P. Ennen, F. Freddi, C.-J. Lin, <b>P.-N. Kung</b>, R.-C. Wang, C.-Y. Yang, D.-S. Shiu, et al.",
+    "venue": "FEVER Workshop 2023"
+  },
+  {
+    "id": "pub-mtl",
+    "selected": true,
+    "year": 2021,
+    "title": "Efficient Multi-Task Auxiliary Learning: Selecting Auxiliary Data by Feature Similarity",
+    "authors": "<b>P.-N. Kung</b>, S.-S. Yin, Y.-C. Chen, T.-H. Yang, Y.-N. Chen",
+    "venue": "EMNLP 2021",
+    "links": {
+      "Paper": "https://aclanthology.org/2021.emnlp-main.34/",
+      "Code": "https://github.com/MiuLab/FastMTL",
+      "BibTeX": "bibtex/fast-mtl.txt",
+      "Talk": "https://www.youtube.com/watch?v=ATacSGd1hfc"
+    },
+    "note": "Oral"
+  },
+  {
+    "id": "pub-dstc9",
+    "year": 2020,
+    "title": "Multi-Task Learning for Situated Multi-Domain End-to-End Dialogue Systems",
+    "authors": "<b>P.-N. Kung</b>, C.-C. Chang, T.-H. Yang, H.-K. Hsu, Y.-J. Liou, Y.-N. Chen",
+    "venue": "AAAI 2021 DSTC9 Workshop",
+    "links": {
+      "Paper": "https://arxiv.org/abs/2110.05221",
+      "BibTeX": "bibtex/dstc9.txt"
+    }
+  },
+  {
+    "id": "pub-rationale",
+    "year": 2020,
+    "title": "Zero-Shot Rationalization by Multi-Task Transfer Learning from Question Answering",
+    "authors": "<b>P.-N. Kung</b>, T.-H. Yang, Y.-C. Chen, S.-S. Yin, Y.-N. Chen",
+    "venue": "EMNLP 2020 Findings",
+    "links": {
+      "Paper": "https://aclanthology.org/2020.findings-emnlp.198/",
+      "Code": "https://github.com/MiuLab/ZeroShotRationale",
+      "BibTeX": "bibtex/zeroshot-rationale.txt"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-09",
+    "text": "On the job market!"
+  },
+  {
+    "date": "2026-06",
+    "text": "LEAP released. <a href=\"https://arxiv.org/abs/2606.03303\">arXiv</a>"
+  },
+  {
+    "date": "2026-05",
+    "text": "Decoupling Task-Solving and Output Formatting accepted to ACL 2026."
+  },
+  {
+    "date": "2026-02",
+    "text": "Ctrl-R accepted to ICML 2026 as a Spotlight. <a href=\"https://arxiv.org/abs/2603.01641\">arXiv</a>"
+  },
+  {
+    "date": "2026-01",
+    "text": "Joined Google Cloud AI Research as a Student Researcher."
+  },
+  {
+    "date": "2024-12",
+    "text": "Ctrl-G presented at NeurIPS 2024."
+  },
+  {
+    "date": "2023-12",
+    "text": "Active Instruction Tuning presented at EMNLP 2023."
+  }
+]

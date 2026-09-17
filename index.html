@@ -1,312 +1,861 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="img/ucla-campus-logo.jpeg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Po-Nien Kung</title>
+<meta name="description" content="Po-Nien Kung is a Ph.D. candidate in Computer Science at UCLA working on reliable control over AI — instruction following, constrained decoding, and verifiable reasoning.">
+<link rel="icon" href="img/ucla-campus-logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+  /* One light theme, stated explicitly. Near-monochrome; the accent
+     appears only on links, the pull-quote rule, and the open tab. */
+  :root {
+    color-scheme: light;
 
-    <title>Po-Nien Kung</title>
+    --paper:   #FAFAF8;
+    --surface: #FFFFFF;
+    --ink:     #17191A;
+    --muted:   #6A6F73;
+    --rule:    #E3E4E1;
+    --rule-2:  #EFEFEC;
+    --accent:  #2D5468;
+    /* Venues get their own tone — same family as the accent but brighter,
+       so a conference name reads as highlighted rather than as a link. */
+    --venue:   #1A6A80;
 
-    <!-- Bootstrap core CSS -->
-    <link href="src/dist/css/bootstrap.min.css" rel="stylesheet">
+    /* The margin column doubles as the portrait's column in the masthead,
+       so it is sized for the photo rather than for the section labels. */
+    --gutter:  10rem;
+    --col-gap: 2.5rem;
+    --aside:   16.5rem;
+    --stick:   3rem;
+  }
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="src/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { max-width: 100%; }
+  /* Must outrank any author `display` below (.panel is a grid), or an element
+     carrying the hidden attribute stays visible — the browser's own [hidden]
+     rule loses to every author rule. */
+  [hidden] { display: none !important; }
+  p { margin: 0 0 .9rem; }
+  p:last-child { margin-bottom: 0; }
 
-    <!-- Custom styles for this template -->
-    <link href="custom.css" rel="stylesheet">
+  /* Hovers settle instead of snapping. */
+  .links a, .refs a, .pub-meta a, .topbar nav a, .tab, .sw {
+    transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
+  }
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="src/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="src/assets/js/ie-emulation-modes-warning.js"></script>
+  /* Anchors land clear of the sticky bar rather than under it. */
+  section[id], .pub { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--stick) + 1.25rem); }
+  /* Smooth scrolling is switched on only once the page has settled (see the
+     end of the script). During load it must stay off: the browser's own scroll
+     to a #hash would animate from a layout that has not finished growing, and
+     that in-flight animation lands last, overriding the corrected position. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.scroll-smooth { scroll-behavior: smooth; }
+  }
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+  /* ---------------- jump bar ---------------- */
+  .topbar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; height: var(--stick);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .tb-name {
+    font-family: "Newsreader", Georgia, serif; font-size: 1rem;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
+  }
+  .topbar nav { display: flex; gap: 1.25rem; }
+  .topbar nav a {
+    font-family: "IBM Plex Mono", monospace; font-size: .75rem;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+  }
+  .topbar nav a:hover { color: var(--accent); }
 
-  <body>
+  /* ---------------- manuscript grid ----------------
+     The margin column is the only section label; body
+     columns never repeat it as a heading. */
+  .page { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .block {
+    display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr);
+    column-gap: var(--col-gap); align-items: start;
+  }
+  .marg {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 400; color: var(--muted);
+    margin: 0; padding-top: .45rem; text-align: right; line-height: 1.5;
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--stick) + 1rem);
+  }
+  /* A section label carries a short rule; a year label inside the list does not,
+     so the two read as different ranks rather than the same thing repeated. */
+  h2.marg { font-size: .75rem; letter-spacing: .08em; color: var(--ink); padding-top: .3rem; }
+  h2.marg::before {
+    content: ""; display: block; width: 1.75rem; height: 2px;
+    background: var(--accent); margin: 0 0 .55rem auto;
+  }
+  /* Between these widths the page is too narrow to spend 10rem on a margin. */
+  @media (max-width: 1150px) { :root { --gutter: 7.5rem; } }
+  @media (max-width: 900px) {
+    :root { --gutter: 0rem; --col-gap: 0rem; }
+    .block { grid-template-columns: minmax(0,1fr); row-gap: .5rem; }
+    .marg { text-align: left; position: static; padding-top: 0; }
+    h2.marg { padding-top: 0; }
+    h2.marg::before { margin-left: 0; margin-bottom: .4rem; }
+  }
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container" style="width: 80%;">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">Po-Nien Kung</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-            <li><a href="#experience" aria-controls="profile" role="tab" data-toggle="tab">Experience</a></li>
-            <li><a href="#publication" aria-controls="profile" role="tab" data-toggle="tab">Publications</a></li>
-            <!-- <li><a href="#life" aria-controls="profile" role="tab" data-toggle="tab">Life</a></li> -->
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+  /* ---------------- masthead ---------------- */
+  .masthead { padding: 2.5rem 0 2rem; }
+  .mast-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) var(--aside);
+    gap: 2.5rem; align-items: start;
+  }
+  @media (max-width: 1000px) { .mast-grid { grid-template-columns: minmax(0,1fr); gap: 1.75rem; } }
+
+  .mast-main { display: flex; flex-direction: column; gap: 1.25rem; max-width: 38rem; }
+  /* The portrait sits in the margin column, at the page's left edge, and
+     takes its full width — so widening that column enlarges the photo. */
+  .portrait {
+    width: 100%; aspect-ratio: 4 / 5; margin-top: .3rem;
+    object-fit: cover; object-position: center 20%;
+    background: var(--rule-2); border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) {
+    .portrait { width: 8.5rem; margin-top: 0; margin-bottom: .5rem; }
+  }
+  h1 {
+    font-family: "Newsreader", Georgia, serif; font-weight: 400;
+    font-size: clamp(2rem, 5vw, 2.625rem); line-height: 1.02;
+    letter-spacing: -.015em; margin: 0 0 .4rem; text-wrap: balance;
+  }
+  h1 .cjk { font-size: .45em; color: var(--muted); letter-spacing: .06em; }
+  .role { margin: 0; color: var(--muted); font-size: .9375rem; max-width: 36ch; }
+  .role strong { color: var(--ink); font-weight: 500; }
+
+  .statement {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(1.1875rem, 2.8vw, 1.4375rem); line-height: 1.4;
+    margin: 0; padding-left: 1rem; border-left: 2px solid var(--accent);
+    /* Not `balance`: re-balancing on every keystroke makes the lines jump. */
+    text-wrap: pretty;
+  }
+  .statement em { font-style: italic; }
+
+  /* While the middle is being written, the two ends are shown as pinned —
+     the constraint the generated text has to land between. */
+  .is-typing .pinned {
+    box-shadow: inset 0 -1px 0 0 color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .statement .gen { transition: none; }
+  .is-typing .gen::after {
+    content: ""; display: inline-block;
+    width: .07em; height: .95em; margin-left: .03em; vertical-align: -.12em;
+    background: var(--accent);
+    animation: caret .9s steps(1, end) infinite;
+  }
+  @keyframes caret { 0%, 55% { opacity: 1 } 56%, 100% { opacity: 0 } }
+
+  .links { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-family: "IBM Plex Mono", monospace; font-size: .8125rem; }
+  .links a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  .links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* news, top right */
+  .news { border: 1px solid var(--rule); background: var(--surface); padding: .95rem 1.1rem 1.05rem; }
+  .news h2 {
+    font-family: "IBM Plex Mono", monospace; font-size: .6875rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); font-weight: 400;
+    margin: 0 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--rule);
+  }
+  .news-item { padding: .45rem 0; border-top: 1px solid var(--rule-2); }
+  .news-item:first-of-type { border-top: none; padding-top: 0; }
+  .news-item time {
+    display: block; font-family: "IBM Plex Mono", monospace; font-size: .6875rem;
+    color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: .1rem;
+  }
+  .news-item p { margin: 0; font-size: .8125rem; line-height: 1.45; }
+
+  /* ---------------- sections ---------------- */
+  section { padding: 2.25rem 0; border-top: 1px solid var(--rule); }
+
+  /* ---------------- thesis ---------------- */
+  .thesis-title {
+    font-family: "Newsreader", Georgia, serif; font-weight: 400;
+    font-size: 1.6875rem; line-height: 1.15; letter-spacing: -.018em;
+    margin: 0 0 .45rem; text-wrap: balance;
+  }
+  .thesis-sub { font-size: .9375rem; color: var(--muted); max-width: 58ch; }
+
+  .tablist { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .25rem; margin-top: 1.25rem; }
+  @media (max-width: 760px) { .tablist { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 400px) { .tablist { grid-template-columns: minmax(0,1fr); } }
+
+  .tab {
+    appearance: none; cursor: pointer; font: inherit; text-align: left;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--rule); border-bottom: none;
+    padding: .55rem .7rem .6rem;
+    display: flex; flex-direction: column; gap: .05rem;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 2px 0 var(--accent); }
+  .tab .n { font-family: "IBM Plex Mono", monospace; font-size: .6875rem; color: var(--muted); }
+  .tab .nm { font-family: "Newsreader", Georgia, serif; font-size: 1.0625rem; line-height: 1.2; }
+  @media (max-width: 760px) { .tab { border-bottom: 1px solid var(--rule); } }
+
+  .panelwrap { background: var(--surface); border: 1px solid var(--rule); padding: 1.4rem 1.5rem; }
+  @media (min-width: 761px) { .panelwrap { min-height: 19rem; } }
+  @media (max-width: 560px) { .panelwrap { padding: 1.2rem 1.1rem; } }
+
+  /* The incoming part settles in rather than cutting. */
+  @keyframes panel-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .panel:not([hidden]) { animation: panel-in 180ms ease-out; }
+
+  .panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 1.75rem; }
+  @media (max-width: 860px) { .panel { grid-template-columns: minmax(0,1fr); gap: 1.25rem; } }
+
+  .panel h3 {
+    font-family: "Newsreader", Georgia, serif; font-weight: 400;
+    font-size: 1.1875rem; line-height: 1.25; letter-spacing: -.008em;
+    margin: 0 0 .5rem; text-wrap: balance;
+  }
+  .panel p { font-size: .9375rem; }
+
+  /* Both reference rows are indented together, so they read as an apparatus
+     hanging off the prose rather than as a continuation of it. */
+  .refs {
+    font-family: "IBM Plex Mono", monospace; font-size: .75rem; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: .3rem .85rem; align-items: baseline;
+    margin-top: .85rem; padding-left: 1.15rem;
+  }
+  .refs a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .refs a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* The paper the panel is about. Shares .refs row styling so the two read as
+     one list; the venue stands in for a label, and the title takes full ink to
+     mark it as primary. Declared after .refs so these win the specificity tie. */
+  /* `.panel p` sets 15px and outranks `.refs` here, since this row is a <p>
+     and the Also row is a <div> — so restate the row's size explicitly. */
+  .panel p.anchor-paper { font-size: .75rem; line-height: 1.5; }
+  .anchor-paper { margin-top: 1.1rem; }
+  .anchor-paper .venue { color: var(--venue); }
+  .anchor-paper .venue.preprint { color: var(--muted); }
+  .anchor-paper a { color: var(--ink); }
+  .anchor-paper + .refs { margin-top: .35rem; }
+
+  figure { margin: 0; }
+  /* Every figure sits in the same 4:3 box and is contained inside it, so panels
+     stay the same height whatever shape the source image is — the gifs are 4:3,
+     the instruction-tuning figure square, LEAP 16:9. width/height attributes stay
+     on each <img> so the box is reserved before the file arrives. */
+  figure img {
+    display: block; width: 100%; height: auto;
+    aspect-ratio: 4 / 3; object-fit: contain;
+  }
+  figcaption { font-size: .75rem; color: var(--muted); margin-top: .45rem; line-height: 1.45; }
+  figcaption b { color: var(--ink); font-weight: 500; }
+
+  /* ---------------- publications ---------------- */
+  .pubswitch { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .sw {
+    appearance: none; background: none; cursor: pointer; padding: 0 0 .15rem;
+    font-family: "IBM Plex Mono", monospace; font-size: .75rem; color: var(--muted);
+    border: none; border-bottom: 1px solid transparent;
+  }
+  .sw:hover { color: var(--ink); }
+  .sw[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .footnote { font-size: .75rem; color: var(--muted); margin-left: auto; }
+
+  .pubgroup { padding: .9rem 0; border-top: 1px solid var(--rule-2); }
+  .pubgroup:first-of-type { border-top: none; }
+  .pubgroup .marg { font-size: .75rem; letter-spacing: .06em; }
+  .pub { margin-bottom: .9rem; max-width: 44rem; }
+  .pub:last-child { margin-bottom: 0; }
+  /* Arriving from a thesis reference, the paper says where it is.
+     Spread shadow does the work so nothing shifts on the page. */
+  @keyframes target-flash {
+    from { background: rgba(45, 84, 104, .09); box-shadow: 0 0 0 .5rem rgba(45, 84, 104, .09); }
+    to   { background: transparent;            box-shadow: 0 0 0 .5rem transparent; }
+  }
+  .pub:target { animation: target-flash 1.4s ease-out; }
+  .pub-title { font-family: "Newsreader", Georgia, serif; font-size: 1.0625rem; font-weight: 400; line-height: 1.3; margin: 0 0 .1rem; text-wrap: pretty; }
+  .pub-authors { font-size: .8125rem; color: var(--muted); margin: 0 0 .1rem; }
+  .pub-authors b { color: var(--ink); font-weight: 600; }
+  .pub-meta {
+    font-family: "IBM Plex Mono", monospace; font-size: .75rem; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: .25rem .7rem; align-items: baseline; margin-top: .25rem;
+  }
+  /* The venue is the thing people scan for, so it outranks the links beside it.
+     A peer-reviewed venue takes the accent; a preprint stays neutral, so the
+     difference between the two is visible without spelling it out. */
+  .pub-meta .venue { font-weight: 500; font-size: .8125rem; letter-spacing: .01em; color: var(--ink); }
+  /* A peer-reviewed venue carries a tint of its own colour, so it reads as
+     highlighted rather than merely coloured. rgba first for older engines,
+     color-mix after, so the tint tracks --venue when that is changed. */
+  .pub-meta .venue.reviewed {
+    color: var(--venue); font-weight: 600;
+    background: rgba(26, 106, 128, .13);
+    background: color-mix(in srgb, var(--venue) 13%, transparent);
+    padding: .1rem .4rem; border-radius: 2px;
+  }
+  .pub-meta .venue.preprint { color: var(--muted); font-weight: 400; }
+  .pub-meta .award {
+    color: var(--accent); border: 1px solid currentColor; border-radius: 2px;
+    padding: 0 .3rem; font-size: .6875rem; letter-spacing: .04em;
+  }
+  .pub-meta a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .pub-meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------------- background ---------------- */
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem 2.5rem; align-items: start; }
+  .subhead {
+    font-family: "IBM Plex Mono", monospace; font-size: .6875rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); font-weight: 400;
+    margin: 0 0 .4rem; padding-bottom: .35rem; border-bottom: 1px solid var(--rule);
+  }
+  .row { display: grid; grid-template-columns: 5.5rem minmax(0,1fr); gap: .75rem; padding: .45rem 0; border-top: 1px solid var(--rule-2); align-items: baseline; }
+  .row:first-of-type { border-top: none; }
+  .row .when { font-family: "IBM Plex Mono", monospace; font-size: .6875rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .row .what { font-size: .875rem; line-height: 1.5; }
+  .row .what b { font-weight: 500; }
+  .row .what small { display: block; color: var(--muted); font-size: .78rem; }
+  @media (max-width: 520px) { .row { grid-template-columns: minmax(0,1fr); gap: .05rem; } }
+
+
+  footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+  footer p { font-family: "IBM Plex Mono", monospace; font-size: .75rem; color: var(--muted); }
+
+  /* Scroll reveal. The hiding half is applied only when the script has decided
+     to run (the .reveal-on class it puts on <html>), so with no JS, an old
+     browser, or reduced motion, every section is simply visible. */
+  .reveal-on .reveal {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal-on .reveal.is-visible { opacity: 1; transform: none; }
+  /* Sections already on screen at load are shown without animating, so the
+     first frame is at rest rather than mid-fade. */
+  .reveal-on .reveal.at-rest { transition: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  @media print {
+    .topbar { display: none; }
+    [role="tabpanel"][hidden] { display: block !important; }
+    .panelwrap { min-height: 0; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="tb-name" href="#top">Po-Nien Kung</a>
+    <nav>
+      <a href="#thesis">Thesis</a>
+      <a href="#papers">Papers</a>
+      <a href="content/Po_Nien_Kung_CV.pdf">CV</a>
     </nav>
+  </div>
+</div>
 
-    <div class="container-fluid" style="padding: 0px; overflow: hidden;">
+<div class="page" id="top">
 
-      <div>
+  <header class="block masthead">
+    <img class="portrait" src="img/ponien.jpeg" alt="Po-Nien Kung">
+    <div class="mast-grid">
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in active" id="home">
-            <!-- <div class="filter-color"></div> -->
-            <div class="row" id="personal-info-row">
-              <!-- <div class="filter-img"></div> -->
-              <div class="col-xs-12 col-md-5" id="personal-photo-div">
-                <div id="personal-photo-bg"></div>
-                <div id="personal-photo-bg" class="img"></div>
-                <img src="img/ponien.jpeg" class="personal-photo">
-              </div>
-              <div class="col-xs-12 col-md-7" id="personal-info">
-                <h1 style="font-weight:bold;"> Po-Nien Kung &nbsp<small>(龔柏年)</small></h2>
-                <h3>First year Ph.D. Student at <br>UCLA</h3>
-                <h4 style="color: #2a554c;"> >> &nbsp ponienkung@cs.ucla.edu</h4>
-                <br>
-                <div style="position: relative; width: 100%;">
-                  <a href="https://github.com/billkunghappy" class="link-icon" ><i class="fab fa-github"></i>&nbsp Github</a>
-                  <a href="https://www.linkedin.com/in/po-nien-kung-0486481b0" class="link-icon"><i class="fab fa-linkedin"></i>&nbsp LinkedIn</a>
-                  <br>
-                  <a href="https://twitter.com/P_N_Kung" class="link-icon"><i class="fab fa-twitter"></i>&nbsp Twitter</a>
-                  <a href="content/bill_resume_v1.pdf" class="link-icon"><i class="fas fa-file-download"></i>&nbsp CV</a>
-                  <br>
-                  <a href="https://scholar.google.com.tw/citations?user=wAjBsHAAAAAJ&hl=zh-TW" class="link-icon" style="width: 100%;"><i class="fa fa-graduation-cap"></i>&nbspGoogle Scholar</a>
-                </div>
-                
-                <!-- <div> Github, Linked In, Google Scholar, twitter, CV</div> -->
-                <!-- <h3>National Taiwan University</h3> -->
-                
-              </div>
+      <div class="mast-main">
+        <div>
+          <h1>Po-Nien Kung <span class="cjk">龔柏年</span></h1>
+          <p class="role">
+            Ph.D. candidate in Computer Science at <strong>UCLA</strong>, advised by
+            <a href="https://vnpeng.net/">Nanyun (Violet) Peng</a>.
+            Graduating 2027.
+          </p>
+        </div>
+
+        <!-- The sentence is written out in full, so it survives with scripts off.
+             The script just below clears the middle span and types it back in
+             between two pinned ends — the page performing its own subject. -->
+        <p class="statement" id="statement"><span class="pinned">I work on <em>reliable control over AI</em>:</span><span class="gen" id="stmt-gen"> making a language model do what it was actually asked to do </span><span class="pinned">— and being able to show that it did.</span></p>
+        <script>
+        /* Inline and immediately after the element on purpose: it has to empty the
+           span while the parser is still working, or the full sentence flashes
+           before the animation starts. */
+        (function () {
+          var gen = document.getElementById("stmt-gen"),
+              stmt = document.getElementById("statement");
+          if (!gen || !window.matchMedia) return;
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+          var full = gen.textContent, i = 0;
+          gen.textContent = "";
+          stmt.classList.add("is-typing");
+
+          /* Cadence, scored the way the line is spoken rather than jittered.
+             Each entry is [text, ms per character, pause after]. Function words
+             run quick, stressed words lean, and the two phrase boundaries —
+             after "model" and before the dash — get a real breath. */
+          var PACE = 1.2;                       // scales everything; lower is faster
+          var SCORE = [
+            [" making",   42,  70],
+            [" a",        26,  40],
+            [" language", 40,  60],
+            [" model",    44, 300],              // phrase boundary
+            [" do",       30,  60],
+            [" what",     34,  60],
+            [" it",       26,  40],
+            [" was",      28,  50],
+            [" actually", 42, 110],              // stressed
+            [" asked",    44,  80],
+            [" to",       26,  40],
+            [" do ",      60, 340]               // final word lengthens, then a breath
+          ];
+
+          // If the sentence is ever edited without the score, show it plainly
+          // rather than typing out something that no longer matches.
+          if (SCORE.map(function (s) { return s[0]; }).join("") !== full) {
+            gen.textContent = full;
+            stmt.classList.remove("is-typing");
+            return;
+          }
+
+          // plan[n] = how long to hold after character n has appeared.
+          var plan = [];
+          SCORE.forEach(function (tk) {
+            for (var k = 0; k < tk[0].length; k++) plan.push(tk[1]);
+            plan[plan.length - 1] += tk[2];
+          });
+
+          function step() {
+            gen.textContent = full.slice(0, ++i);
+            if (i >= full.length) { stmt.classList.remove("is-typing"); return; }
+            // A little jitter so the score does not sound mechanical.
+            setTimeout(step, plan[i - 1] * PACE * (0.92 + Math.random() * 0.16));
+          }
+          // Long enough that the page has settled and the serif has loaded.
+          setTimeout(step, 700);
+        })();
+        </script>
+
+        <div class="links">
+          <a href="mailto:ponienkung@ucla.edu">ponienkung@ucla.edu</a>
+          <a href="https://scholar.google.com/citations?user=wAjBsHAAAAAJ">Scholar</a>
+          <a href="https://github.com/billkunghappy">GitHub</a>
+          <a href="https://www.linkedin.com/in/po-nien-kung-0486481b0">LinkedIn</a>
+          <a href="content/Po_Nien_Kung_CV.pdf">CV</a>
+        </div>
+      </div>
+
+      <aside class="news">
+        <h2>Recent</h2>
+        <div id="newslist"></div>
+      </aside>
+
+    </div>
+  </header>
+
+  <!-- ============================ thesis ============================ -->
+  <section id="thesis" class="block">
+    <h2 class="marg">Thesis</h2>
+    <div>
+      <p class="thesis-title">Reliable Control over AI</p>
+      <p class="thesis-sub">
+        Four stages, in the order the problem forced on me: 
+        diagnose where control fails, 
+        enforce structure at inference time, 
+        shape reasoning during training, 
+        and extend reliable control to long-horizon problems through verifiable memory.
+      </p>
+
+      <div class="tablist" role="tablist" aria-label="Thesis parts">
+        <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">
+          <span class="n">01</span><span class="nm">Diagnose</span>
+        </button>
+        <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">
+          <span class="n">02</span><span class="nm">Constrain</span>
+        </button>
+        <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">
+          <span class="n">03</span><span class="nm">Learn</span>
+        </button>
+        <button class="tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">
+          <span class="n">04</span><span class="nm">Scale</span>
+        </button>
+      </div>
+
+      <div class="panelwrap">
+
+        <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+          <div>
+            <h3>Learning the format, not the task</h3>
+            <p>
+              In 2023, instruction-tuned models led every benchmark. Their scores concealed a
+              simpler explanation: the model had learned the shape of an answer, not the task
+              behind it. Swapping an instruction for a misleading one barely moved performance.
+              The gap widened when a model had to follow an unfamiliar definition instead of
+              leaning on familiar correlations, and it returned a level up when one model was
+              asked to review another’s work.
+            </p>
+            <p class="refs anchor-paper">
+              <span class="venue">ACL 2023</span>
+              <a href="#pub-instr">Do Models Really Learn to Follow Instructions? An Empirical Study of Instruction Tuning</a>
+            </p>
+            <div class="refs">
+              <span>Also</span>
+              <a href="#pub-eventdef">Event Definition Following</a>
             </div>
-            <div class="row">
-              <div class="col-xs-10 col-md-12 h-line" style="width: 60%; height: 2px;"></div>
-              <div class="col-xs-6 col-md-12 h-line" style="width: 20%;" id="right-h-line"></div>
-              <div class="col-xs-12 col-md-8" id="about-me">
-                <!-- About Me Section -->
-                <h2> About Me </h2>
-                <p class="text-content">
-                  Hi! <br>
-                  I'm a first year Ph.D. student at UCLA adviced by Prof. <a href="https://vnpeng.net/">Nanyun(Violet) Peng</a>.
-                  I previous work as a research assistant in National Taiwan University advised by Prof. <a href="https://www.csie.ntu.edu.tw/~yvchen/">Yun-Nung (Vivian) Chen</a>.
-                  <br>
-                  <br>
-                  My primary research interests lie in the area of natural language processing and machine learning.
-                  The core motivation of my research is to develop a general-purpose machine learning system that works across a wide range of tasks and multiple modalities equipped with large-scale knowledge.
-                  To achieve this goal, I focus on three research directions:
-                  <ul style="text-align: left;">
-                    <li class="text-content"><b>Multi-task Learning</b> - To generalize to a wide range of tasks.</li>
-                    <li class="text-content"><b>Multi-modal Learning</b> - To generalize to multiple modalities.</li>
-                    <li class="text-content"><b>Model Interpretation</b> - To uncover the decision process belied in model.</li>
-                  </ul>
-                </p>
-                
-              </div>
-              <div class="col-xs-12 col-md-4" id="recent-news">
-                <h2 style="text-align: center; width: 100%; margin:0px; margin-bottom: 1vh;" id="">Recent News</h2>
-                <div class="list-group" id="recent-news-list">
-                  <a href="#" class="list-group-item example-recent-news-bullhorn" style="display: none;">
-                    <h4 class="list-group-item-heading"> 
-                      <i class="fas fa-bullhorn" style="color: red;"></i>
-                      <span class="recent-news-title"> List group item heading </span>
-                    </h4>
-                    <p class="list-group-item-text recent-news-date">...</p>
-                  </a>
-                  <a href="#" class="list-group-item example-recent-news-paper" style="display: none;">
-                    <h4 class="list-group-item-heading"> 
-                      <i class="fas fa-scroll" style="color: skyblue;" ></i>
-                      <span class="recent-news-title"> List group item heading </span>
-                    </h4>
-                    <p class="list-group-item-text recent-news-date">...</p>
-                  </a>
-                  <a href="#" class="list-group-item example-recent-news-code" style="display: none;">
-                    <h4 class="list-group-item-heading"> 
-                      <i class="fas fa-code" style="color: rgb(211, 211, 17);" ></i>
-                      <span class="recent-news-title"> List group item heading </span>
-                    </h4>
-                    <p class="list-group-item-text recent-news-date">...</p>
-                  </a>
-                  <a href="#" class="list-group-item example-recent-news-star" style="display: none;">
-                    <h4 class="list-group-item-heading">
-                      <i class="fas fa-star" style="color: rgb(25, 187, 52);" ></i>
-                      <span class="recent-news-title"> List group item heading </span>
-                    </h4>
-                    <p class="list-group-item-text recent-news-date">...</p>
-                  </a>
+          </div>
+          <figure>
+            <img src="img/DoModelFollows.jpg" width="1400" height="1400"
+                 alt="Benchmark performance under original, altered, and misleading instructions.">
+            <figcaption>Swap the instruction for a misleading one and the score barely moves — the format was learned, not the task.</figcaption>
+          </figure>
+        </div>
 
-                </div>
-              </div>
+        <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
+          <div>
+            <h3>Constraints enforced, not requested</h3>
+            <p>
+              In 2024, prompting could steer a model but never bind it, and complex constraints
+              still slipped through. Ctrl-G distills the base model into a hidden Markov model and
+              composes it with an automaton encoding the specification, so every output satisfies
+              it by construction. A 7B model satisfied 79% of constraints where GPT-4, then state
+              of the art, managed 24% — and the same machinery shapes not only <em>what</em> a
+              model produces, but <em>how</em> it reasons.
+            </p>
+            <p class="refs anchor-paper">
+              <span class="venue">NeurIPS 2024</span>
+              <a href="#pub-ctrlg">Adaptable Logical Control for Large Language Models (Ctrl-G)</a>
+            </p>
+            <div class="refs">
+              <span>Also</span>
+              <a href="#pub-decouple">Decoupling Task &amp; Format</a>
             </div>
-            <!-- <div class="full-width-pane">
-              <img src="img/ponien.jpeg" class="personal-photo">
-              <div class="" id="personal-info">
+          </div>
+          <figure>
+            <img src="img/ctrl-g-teaser.gif" width="1080" height="810"
+                 alt="Ctrl-G composes a distilled hidden Markov model with an automaton, so sampled text satisfies the constraint.">
+            <figcaption>Give Ctrl-G any mix of constraints — keywords, a target length, a passage to insert into — and every output satisfies all of them.</figcaption>
+          </figure>
+        </div>
 
-              </div>
+        <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
+          <div>
+            <h3>Control begins in learning</h3>
+            <p>
+              In 2025, reinforcement learning could sharpen reasoning, but only across the
+              trajectories a model happened to explore — coverage, not capability, was the
+              bottleneck. Ctrl-R carries tractable trajectory control from inference into
+              learning, steering exploration toward backtracking, induction, and counterfactual
+              reasoning, with importance correction during optimization. The model learns which
+              structures pay off instead of imitating one chain of thought.
+            </p>
+            <p class="refs anchor-paper">
+              <span class="venue">ICML 2026 Spotlight</span>
+              <a href="#pub-traj">Learning Structured Reasoning via Tractable Trajectory Control</a>
+            </p>
+            <div class="refs">
+              <span>Also</span>
+              <a href="#pub-ait">Active Instruction Tuning</a>
+            </div>
+          </div>
+          <figure>
+            <img src="img/ctrl-r-teaser.gif" width="1080" height="810"
+                 alt="Ctrl-R steers exploration toward reasoning structures such as backtracking and induction during learning.">
+            <figcaption>The Ctrl-R framework: a tractable model steers generation toward lexical patterns that elicit entirely new reasoning structures.</figcaption>
+          </figure>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
+          <div>
+            <h3>Scaling control requires verifiable memory</h3>
+            <p>
+              By 2026, scaling control past a single trajectory had become a memory problem. A
+              model reasons inside a short context and draws on parametric knowledge, but nothing
+              reliable sits between them. LEAP adds that layer: a verified DAG holding the
+              decomposition, its dependencies, and the current frontier, so an agent can reuse
+              solved subproblems, backtrack from failure, and try alternatives without ever losing
+              the global picture.
+            </p>
+            <p class="refs anchor-paper">
+              <span class="venue preprint">Preprint</span>
+              <a href="#pub-leap">LEAP: Supercharging LLMs for Formal Mathematics with Agentic Frameworks</a>
+            </p>
+            <!-- <div class="refs">
+              <span>Also</span>
+              <a href="#pub-planned">Planned Test-Time Scaling</a>
             </div> -->
           </div>
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="experience">
-            <!-- <div class="filter-color"></div> -->
-            <div class="row">
-              <div class="col-xs-18 col-md-12">
-                <h1 style="text-align: center; width: 100%; margin-top: 80px; margin-bottom: 1vh;">Experience</h2>
-                <div class="list-group">
-                  <div class="page-header">
-                    <h1 style="text-align: center;"><small>Education</small></h1>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">National Taiwan University</h4>
-                    <p class="list-group-item-text publication medium">- &nbsp Bachelor's Degree</p>
-                    <p class="list-group-item-text publication small">2017 September - 2021 July</p>
-                  </div>
-                  <div class="page-header">
-                    <h1 style="text-align: center;"><small>Research Experience</small></h1>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">MediaTek Research UK</h4>
-                    <p class="list-group-item-text publication medium">- &nbsp Deep Learning Researcher</p>
-                    <p class="list-group-item-text publication small">Taipei(Remote)</p>
-                    <p class="list-group-item-text publication small">2021 October - 2022 January</p>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">National Taiwan University</h4>
-                    <p class="list-group-item-text publication medium">- &nbsp Research Assistant</p>
-                    <p class="list-group-item-text publication small">Taipei</p>
-                    <p class="list-group-item-text publication small">2021 July - 2021 December</p>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">Microsoft</h4>
-                    <p class="list-group-item-text publication medium">- &nbsp Research Intern</p>
-                    <p class="list-group-item-text publication small">Taipei</p>
-                    <p class="list-group-item-text publication small">2021 March - 2021 July</p>
-                  </div>
-                  <div class="page-header">
-                    <h1 style="text-align: center;"><small>Other Experience</small></h1>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">Gridwell</h4>
-                    <p class="list-group-item-text publication medium">- &nbsp Part-Time Software Developer</p>
-                    <p class="list-group-item-text publication small">Taipei</p>
-                    <p class="list-group-item-text publication small">2018 July - 2020 January</p>
-                  </div>
-                  <div class="list-group-item publication">
-                    <h4 class="list-group-item-heading publication small">Freelance Web Developer</h4>
-                    <p class="list-group-item-text publication medium">
-                      - &nbsp Poseidon Network website
-                      <span>
-                        [
-                        <a href="https://billkunghappy.github.io/Poseidon_demo/">Link</a> 
-                        ]
-                      </span>
-                    </p>
-                    <p class="list-group-item-text publication medium">
-                      - &nbsp Binance 2020 Blockchain Week In Vietnam website
-                    </p>
-                    <p class="list-group-item-text publication medium">
-                      - &nbsp Binance 2020 Blockchain Virtual Conference website
-                      <span>
-                        [
-                        <a href="https://www.binance.com/en/anniversary-3">Link</a> 
-                        ]
-                      </span>
-                    </p>
-                    <p class="list-group-item-text publication medium">
-                      - &nbsp Taipei National University of the Arts freshman admission website
-                      <span>
-                        [
-                        <a href="https://billkunghappy.github.io/Bei-Yi-Da/index.html">Link</a> 
-                        ]
-                      </span>
-                    </p>
-                    <p class="list-group-item-text publication small">2019 October - 2020 July</p>
-                  </div>
-                  
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="publication">
-            <!-- <div class="filter-color"></div> -->
-            <div class="row">
-              <div class="col-xs-18 col-md-12">
-                <h1 style="text-align: center; width: 100%; margin-top: 80px; margin-bottom: 1vh;">Publications</h2>
-                <div class="list-group" id="publication-list">
-                  <div class="page-header example-publication-year" style="display: none;">
-                    <h1><small>Year 2020</small></h1>
-                  </div>
-                  <div class="list-group-item publication example-publication-item" style="display: none;">
-                    <h4 class="list-group-item-heading publication paper_title">Paper Title</h4>
-                    <p class="list-group-item-text publication author_list">Author List</p>
-                    <p class="list-group-item-text publication conference">
-                      <span class="paper-conference">Conference and links </span>
-                      <span class="paper-accept-rate" style="display: none; color: #52ab98;">Accept_rate</span>
-                      <span class="paper-link" style="display: none;">
-                        [
-                        <a href="">Paper</a> 
-                        ]
-                      </span>
-                      <span class="code-link" style="display: none;">
-                        [
-                        <a href="">Code</a> 
-                        ]
-                      </span>
-                      <span class="bibtex-link" style="display: none;">
-                        [
-                        <a href="">BibTeX</a> 
-                        ]
-                      </span>
-                      <span class="slides-link" style="display: none;">
-                        [
-                        <a href="">Slide</a> 
-                        ]
-                      </span>
-                      <span class="talk-link" style="display: none;">
-                        [
-                        <a href="">Talk</a> 
-                        ]
-                      </span>
-                    </p>
-                  </div>
-                  
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div role="tabpanel" class="tab-pane full-tab-pane fade in" id="life">
-            <!-- <div class="filter-color"></div> -->
-            <div class="row" style="text-align: center;">
-              <img src="img/under_construction.png" class="photo" style="width: 60%; display: inline-block; margin-top: 20%;">
-            </div>
-          </div>
+          <figure>
+            <img src="img/LEAP.png" width="1343" height="756"
+                 alt="LEAP's verified DAG memory: problem decomposition, dependencies, and the current frontier.">
+            <figcaption>The LEAP framework: an agent runs informal and formal provers and a sketch reviewer, keeping verified progress in a DAG memory.</figcaption>
+          </figure>
         </div>
-      
+
       </div>
+    </div>
+  </section>
 
-    </div><!-- /.container -->
+  <!-- ============================ publications ============================ -->
+  <section id="papers">
+    <div class="block">
+      <h2 class="marg">Publications</h2>
+      <div class="pubswitch" style="max-width:44rem;">
+        <button class="sw" data-view="selected" aria-pressed="true">Selected</button>
+        <button class="sw" data-view="all" aria-pressed="false">All</button>
+        <span class="footnote">
+          <span style="font-family:'IBM Plex Mono',monospace;">*</span> equal contribution ·
+          <a href="https://scholar.google.com/citations?user=wAjBsHAAAAAJ">Google Scholar</a>
+        </span>
+      </div>
+    </div>
+    <div id="publist"></div>
+  </section>
 
+  <!-- ============================ background ============================ -->
+  <section id="background" class="block">
+    <h2 class="marg">Background</h2>
+    <div class="two">
+      <div>
+        <p class="subhead">Education &amp; research</p>
+        <div class="row"><span class="when">2022–Current</span><div class="what"><b>Ph.D., Computer Science</b> — UCLA<small>Advised by Nanyun (Violet) Peng</small></div></div>
+        <div class="row"><span class="when">2026-2026</span><div class="what"><b>Student Researcher</b> — Google Cloud AI Research<small>Formal mathematics, agentic proof search</small></div></div>
+        <div class="row"><span class="when">2021–2022</span><div class="what"><b>Research Intern</b> — MediaTek Research<small>Dense retrieval for question answering</small></div></div>
+        <div class="row"><span class="when">2021</span><div class="what"><b>Research Intern</b> — Microsoft, Taipei</div></div>
+        <div class="row"><span class="when">2017–2021</span><div class="what"><b>B.S., Computer Science</b> — National Taiwan University<small>Research assistant with Yun-Nung (Vivian) Chen</small></div></div>
+      </div>
+      <div>
+        <p class="subhead">Service &amp; teaching</p>
+        <div class="row"><span class="when">Reviewing</span><div class="what">ACL / EMNLP / NeurIPS / ICLR / ICML</div></div>
+        <div class="row"><span class="when">Teaching</span><div class="what">TA: Natural Language Processing, 2024 Spring</div></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="src/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="src/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="src/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="https://kit.fontawesome.com/f0a77a799b.js" crossorigin="anonymous"></script>
-    <script src="render_content_js/render_publication.js"></script>
-    <script src="render_content_js/render_recent_news.js"></script>
-  </body>
+  <footer class="block">
+    <div class="marg"></div>
+    <p>ponienkung@ucla.edu · Los Angeles · Updated 2026.09.17</p>
+  </footer>
+
+</div>
+
+<script>
+  /* ===================================================================
+     CONTENT lives in two JSON files, not in this page:
+
+       content/news.json    — one entry per announcement
+       content/papers.json  — one entry per paper
+
+     Adding to either is the whole update workflow; see templates/README.md
+     for the field list. Both files sort themselves, so a new entry can go
+     anywhere in the array.
+
+     These are fetched, so the page must be served over http — a local
+     server or the live site — not opened straight from disk.
+     =================================================================== */
+
+  const NEWS_URL   = "content/news.json";
+  const PAPERS_URL = "content/papers.json";
+  const NEWS_SHOWN = 5;
+
+  const stillness = matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* `no-cache` revalidates rather than trusting the browser's copy, so an
+     edit to the JSON shows up on reload instead of hours later. */
+  async function load(url, what) {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(what + ": " + res.status + " " + res.statusText);
+    return res.json();
+  }
+
+  function failed(host, what, err) {
+    console.error(err);
+    host.innerHTML = '<p style="font-size:.8125rem; color:var(--muted); margin:0;">' +
+      "Could not load " + what + ". If you are previewing this file from disk, " +
+      "serve it over http instead — <code>python3 -m http.server</code>." + "</p>";
+  }
+
+  /* ---- news ---- */
+  const newsHost = document.getElementById("newslist");
+
+  load(NEWS_URL, "news").then(news => {
+    news
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .slice(0, NEWS_SHOWN)
+      .forEach(n => {
+        const [y, m] = n.date.split("-");
+        const month = new Date(Number(y), Number(m) - 1, 1)
+          .toLocaleDateString("en-US", { month: "long", year: "numeric" });
+        const el = document.createElement("div");
+        el.className = "news-item";
+        el.innerHTML = '<time datetime="' + n.date + '">' + month + "</time><p>" + n.text + "</p>";
+        newsHost.appendChild(el);
+      });
+  }).catch(err => failed(newsHost, "recent news", err));
+
+  /* ---- publications ---- */
+  const host = document.getElementById("publist");
+  let BY_YEAR = [];
+
+  load(PAPERS_URL, "papers").then(papers => {
+    BY_YEAR = papers.sort((a, b) => b.year - a.year);
+    render("selected", false);
+    /* The browser resolved any hash before this list existed, so the page has
+       grown underneath the reader since then. Re-aim at the target — including
+       #papers itself, whose section was nearly empty at that point. */
+    if (location.hash) {
+      let target = document.querySelector(location.hash);
+      if (!target && location.hash.startsWith("#pub-")) {
+        render("all", false);                       // not in the selected view
+        target = document.querySelector(location.hash);
+      }
+      // Instant, not the CSS smooth default: this is a correction for content
+      // that loaded late, not a journey the reader asked to watch — and a long
+      // smooth scroll fired at load is easily interrupted before it arrives.
+      if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
+    }
+  })
+  .catch(err => failed(host, "the publication list", err))
+  // Only now, with the page at its final height and parked in the right place,
+  // does smooth scrolling become useful — for nav clicks from here on.
+  .finally(() => requestAnimationFrame(
+    () => document.documentElement.classList.add("scroll-smooth")));
+
+  function render(view, animate) {
+    host.textContent = "";
+    let lastYear = null, body = null;
+    for (const p of BY_YEAR) {
+      if (view === "selected" && !p.selected) continue;
+      if (p.year !== lastYear) {
+        const group = document.createElement("div");
+        group.className = "block pubgroup";
+        group.innerHTML = '<div class="marg">' + p.year + '</div><div></div>';
+        host.appendChild(group);
+        body = group.lastElementChild;
+        lastYear = p.year;
+      }
+      const el = document.createElement("article");
+      el.className = "pub";
+      el.id = p.id;
+      const links = Object.entries(p.links || {})
+        .map(([k, v]) => '<a href="' + v + '">' + k + "</a>").join("");
+      el.innerHTML =
+        '<h3 class="pub-title">' + p.title + "</h3>" +
+        '<p class="pub-authors">' + p.authors + "</p>" +
+        '<div class="pub-meta"><span class="venue ' +
+          (/^arxiv/i.test(p.venue) ? "preprint" : "reviewed") + '">' + p.venue + "</span>" +
+          (p.note ? '<span class="award">' + p.note + "</span>" : "") + links + "</div>";
+      body.appendChild(el);
+    }
+    switches.forEach(s => s.setAttribute("aria-pressed", String(s.dataset.view === view)));
+    if (animate && !stillness.matches) {
+      host.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: "ease-out" });
+    }
+  }
+
+  const switches = [...document.querySelectorAll(".sw")];
+  switches.forEach(s => s.addEventListener("click", () => render(s.dataset.view, true)));
+
+  /* A thesis reference may point at a paper the selected view leaves out,
+     so open the full list before the link jumps to it. */
+  document.querySelectorAll('.refs a[href^="#pub-"]').forEach(a => {
+    a.addEventListener("click", () => render("all", false));
+  });
+
+  /* thesis tabs */
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map(t => document.getElementById(t.getAttribute("aria-controls")));
+
+  function selectTab(i, focus) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => selectTab(i, false));
+    t.addEventListener("keydown", e => {
+      const k = e.key;
+      if (k !== "ArrowRight" && k !== "ArrowLeft" && k !== "Home" && k !== "End") return;
+      e.preventDefault();
+      const next = k === "Home" ? 0
+                 : k === "End"  ? tabs.length - 1
+                 : k === "ArrowRight" ? (i + 1) % tabs.length
+                 : (i - 1 + tabs.length) % tabs.length;
+      selectTab(next, true);
+    });
+  });
+
+  /* ---- reveal each section the first time it is scrolled into view ----
+     Bails out entirely (leaving everything visible) for reduced motion, for
+     browsers without IntersectionObserver, and when the page was opened on a
+     deep link — where the reader wants the target, not an entrance. */
+  (function revealOnScroll() {
+    if (stillness.matches || location.hash) return;
+
+    document.documentElement.classList.add("reveal-on");
+    let pending = [...document.querySelectorAll(".page > section, .page > footer")];
+    pending.forEach(el => el.classList.add("reveal"));
+
+    // Deliberately a scroll handler rather than an IntersectionObserver: if the
+    // observer's callback never runs, these blocks stay invisible permanently.
+    // A scroll listener cannot be starved, and the cost here is trivial.
+    const show = (el, instant) => {
+      el.classList.add("is-visible");
+      if (instant) el.classList.add("at-rest");
+    };
+    const sweep = (instant) => {
+      const limit = window.innerHeight * 0.92;      // a little before the edge
+      pending = pending.filter(el => {
+        if (el.getBoundingClientRect().top >= limit) return true;
+        show(el, instant);
+        return false;
+      });
+      if (!pending.length) {
+        removeEventListener("scroll", onScroll);
+        removeEventListener("resize", onScroll);
+      }
+    };
+
+    // Called directly rather than deferred through requestAnimationFrame: a
+    // handful of getBoundingClientRect calls costs nothing, and rAF can be
+    // throttled, which would leave these blocks invisible.
+    const onScroll = () => sweep(false);
+
+    sweep(true);                                    // first frame renders at rest
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    // Late-loading content can grow the page under a reader who never scrolls.
+    setTimeout(() => sweep(false), 1200);
+    setTimeout(() => document.querySelectorAll(".at-rest")
+      .forEach(el => el.classList.remove("at-rest")), 60);
+  })();
+</script>
+
+</body>
 </html>
